@@ -1,0 +1,3785 @@
+<!DOCTYPE html>
+<html lang="mn" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="FOR GOOD - Монголын вэб хөгжүүлэлтийн компани. Вэб сайт, онлайн дэлгүүр, мобайл апп хийж өгнө.">
+    <meta name="theme-color" content="#0a0a0a">
+    
+    <title>FOR GOOD | Вэб хөгжүүлэлтийн компани</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <style>
+        /* CSS Custom Properties */
+        :root {
+            --color-bg: #0a0a0a;
+            --color-surface: #111111;
+            --color-surface-elevated: #1a1a1a;
+            --color-gold: #D4AF37;
+            --color-gold-light: #F4D03F;
+            --color-gold-dark: #B8962E;
+            --color-text: #ffffff;
+            --color-text-secondary: #a0a0a0;
+            --color-text-muted: #666666;
+            --color-border: rgba(212, 175, 55, 0.2);
+            --color-success: #00C853;
+            --color-error: #FF1744;
+            --color-warning: #FFD600;
+            
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
+            --shadow-md: 0 8px 32px rgba(0,0,0,0.4);
+            --shadow-lg: 0 16px 64px rgba(0,0,0,0.5);
+            --shadow-gold: 0 8px 32px rgba(212, 175, 55, 0.2);
+            
+            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            --container-max: 1440px;
+            --container-padding: clamp(1rem, 5vw, 3rem);
+            
+            --header-height: 80px;
+        }
+
+        /* Reset & Base */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        h1 { font-size: clamp(2.5rem, 8vw, 5rem); }
+        h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
+        h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+        h4 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
+
+        p {
+            color: var(--color-text-secondary);
+            font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition-base);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: inherit;
+        }
+
+        /* Utility Classes */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+
+        .glass {
+            background: rgba(17, 17, 17, 0.7);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--color-border);
+        }
+
+        .gold-gradient {
+            background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-light) 50%, var(--color-gold) 100%);
+            background-size: 200% 200%;
+            animation: shimmer 3s ease infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Background Effects */
+        .universe-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: floatOrb 20s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--color-gold);
+            top: -10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--color-gold-dark);
+            top: 40%;
+            right: -5%;
+            animation-delay: -7s;
+        }
+
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+            background: var(--color-gold);
+            bottom: 10%;
+            left: 30%;
+            animation-delay: -14s;
+        }
+
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        /* Header & Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            z-index: 1000;
+            transition: var(--transition-base);
+        }
+
+        .header.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            z-index: 1001;
+        }
+
+        .logo-mark {
+            width: 40px;
+            height: 40px;
+            background: var(--color-gold);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-bg);
+            font-weight: 800;
+            font-size: 0.875rem;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            font-weight: 500;
+            font-size: 0.9375rem;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-gold);
+            transition: var(--transition-base);
+        }
+
+        .nav-links a:hover {
+            color: var(--color-text);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--color-gold);
+            color: var(--color-bg) !important;
+            padding: 0.75rem 1.5rem !important;
+            border-radius: var(--radius-md);
+            font-weight: 600 !important;
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            padding: 0.5rem;
+            z-index: 1001;
+            background: none;
+            border: none;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--color-text);
+            transition: var(--transition-base);
+            transform-origin: center;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                inset: 0;
+                background: rgba(10, 10, 10, 0.98);
+                flex-direction: column;
+                justify-content: center;
+                gap: 2rem;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateX(0);
+            }
+
+            .nav-links a {
+                font-size: 1.25rem;
+            }
+        }
+
+        /* Main Content */
+        main {
+            padding-top: var(--header-height);
+        }
+
+        section {
+            padding: clamp(4rem, 10vw, 8rem) 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: clamp(3rem, 6vw, 5rem);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--color-border);
+            border-radius: 50px;
+            color: var(--color-gold);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, var(--color-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: calc(100vh - var(--header-height));
+            display: flex;
+            align-items: center;
+            padding: 2rem 0;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (max-width: 968px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        .hero-content {
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--color-border);
+            border-radius: 50px;
+            color: var(--color-gold);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+            50% { box-shadow: 0 0 20px 5px rgba(212, 175, 55, 0.1); }
+        }
+
+        .hero h1 {
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .typing-text {
+            color: var(--color-gold);
+            font-weight: 600;
+        }
+
+        .typing-text::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .hero-desc {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        @media (max-width: 968px) {
+            .hero-desc {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 2.5rem;
+            padding: 1.5rem 0;
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        @media (max-width: 968px) {
+            .hero-stats {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--color-gold);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 968px) {
+            .hero-buttons {
+                justify-content: center;
+            }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition-base);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--color-gold);
+            color: var(--color-bg);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-text);
+            border: 2px solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-gold);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .btn-large {
+            padding: 1.25rem 2.5rem;
+            font-size: 1.125rem;
+        }
+
+        /* Hero Visual */
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 968px) {
+            .hero-visual {
+                display: none;
+            }
+        }
+
+        .dashboard-mockup {
+            width: 100%;
+            max-width: 600px;
+            background: var(--glass);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            transform: perspective(1000px) rotateY(-15deg) rotateX(5deg);
+            transition: transform 0.5s;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .dashboard-mockup:hover {
+            transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
+        }
+
+        .mockup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .mockup-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background: #ff5f57; }
+        .dot-yellow { background: #febc2e; }
+        .dot-green { background: #28c840; }
+
+        .mockup-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .mockup-card {
+            background: var(--color-surface);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            border: 1px solid var(--color-border);
+        }
+
+        .mockup-card h4 {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .mockup-value {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-gold);
+            margin-bottom: 0.75rem;
+        }
+
+        .mockup-chart {
+            height: 40px;
+            background: linear-gradient(90deg, var(--color-gold-dark), var(--color-gold));
+            border-radius: var(--radius-sm);
+            opacity: 0.6;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mockup-chart::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        .float-card {
+            position: absolute;
+            background: var(--glass);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: 1rem 1.25rem;
+            backdrop-filter: blur(10px);
+            animation: floatCard 6s infinite ease-in-out;
+            box-shadow: var(--shadow-md);
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .float-card-1 {
+            top: 10%;
+            right: -20px;
+            animation-delay: 0s;
+        }
+
+        .float-card-2 {
+            bottom: 20%;
+            left: -20px;
+            animation-delay: -3s;
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: var(--glass);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            transition: var(--transition-slow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--color-gold);
+            transform: scaleX(0);
+            transition: transform 0.5s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--color-gold);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-gold);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: var(--transition-base);
+        }
+
+        .service-card:hover .service-icon {
+            background: var(--color-gold);
+            color: var(--color-bg);
+            transform: scale(1.1);
+        }
+
+        .service-card h3 {
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+        }
+
+        .service-card p {
+            margin-bottom: 1.5rem;
+            font-size: 0.9375rem;
+        }
+
+        .service-features {
+            list-style: none;
+        }
+
+        .service-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0;
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .service-features li:last-child {
+            border-bottom: none;
+        }
+
+        .service-features i {
+            color: var(--color-gold);
+            font-size: 0.875rem;
+        }
+
+        /* Portfolio Section */
+        .portfolio-section {
+            background: var(--color-surface);
+        }
+
+        .portfolio-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--color-border);
+            border-radius: 50px;
+            color: var(--color-text-secondary);
+            font-weight: 500;
+            transition: var(--transition-base);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--color-gold);
+            border-color: var(--color-gold);
+            color: var(--color-bg);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 480px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .portfolio-card {
+            background: var(--color-surface-elevated);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: var(--transition-slow);
+            cursor: pointer;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--color-gold);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .portfolio-image-wrapper {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .portfolio-card:hover .portfolio-image {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 10, 10, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition-base);
+        }
+
+        .portfolio-card:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-view-btn {
+            width: 60px;
+            height: 60px;
+            background: var(--color-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-bg);
+            font-size: 1.25rem;
+            transform: scale(0);
+            transition: transform 0.3s;
+        }
+
+        .portfolio-card:hover .portfolio-view-btn {
+            transform: scale(1);
+        }
+
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+
+        .portfolio-category {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            color: var(--color-gold);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+        }
+
+        .portfolio-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-desc {
+            font-size: 0.9375rem;
+            color: var(--color-text-muted);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .portfolio-pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .pagination-btn {
+            width: 48px;
+            height: 48px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text);
+            transition: var(--transition-base);
+        }
+
+        .pagination-btn:hover:not(:disabled) {
+            border-color: var(--color-gold);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .pagination-info {
+            color: var(--color-text-secondary);
+            font-size: 0.9375rem;
+        }
+
+        /* Pricing Section */
+        .pricing-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+            background: var(--color-surface);
+            padding: 0.5rem;
+            border-radius: var(--radius-md);
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid var(--color-border);
+        }
+
+        .pricing-tab {
+            flex: 1;
+            padding: 0.875rem 1.5rem;
+            border-radius: var(--radius-sm);
+            border: none;
+            background: transparent;
+            color: var(--color-text-secondary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-base);
+        }
+
+        .pricing-tab.active {
+            background: var(--color-gold);
+            color: var(--color-bg);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--glass);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition-slow);
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--color-gold);
+        }
+
+        .pricing-card.popular {
+            border: 2px solid var(--color-gold);
+            transform: scale(1.05);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .pricing-card.popular:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        @media (max-width: 968px) {
+            .pricing-card.popular {
+                transform: none;
+            }
+            .pricing-card.popular:hover {
+                transform: translateY(-10px);
+            }
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--color-gold);
+            color: var(--color-bg);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .pricing-tier {
+            font-size: 0.875rem;
+            color: var(--color-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-name {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-desc {
+            color: var(--color-text-muted);
+            font-size: 0.9375rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-price {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--color-gold);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 0.25rem;
+            line-height: 1;
+        }
+
+        .pricing-price span {
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem 0;
+            border-bottom: 1px solid var(--color-border);
+            font-size: 0.9375rem;
+        }
+
+        .pricing-features li i {
+            color: var(--color-gold);
+            font-size: 1rem;
+        }
+
+        .pricing-features li.not-included {
+            color: var(--color-text-muted);
+            opacity: 0.5;
+        }
+
+        .pricing-features li.not-included i {
+            color: var(--color-text-muted);
+        }
+
+        .pricing-btn {
+            width: 100%;
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            border: 2px solid var(--color-gold);
+            background: transparent;
+            color: var(--color-gold);
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition-base);
+        }
+
+        .pricing-btn:hover {
+            background: var(--color-gold);
+            color: var(--color-bg);
+        }
+
+        .pricing-card.popular .pricing-btn {
+            background: var(--color-gold);
+            color: var(--color-bg);
+        }
+
+        .pricing-card.popular .pricing-btn:hover {
+            background: var(--color-gold-light);
+        }
+
+        /* Process Section */
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--color-gold), transparent);
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50%;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 50%;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                justify-content: flex-start;
+                padding-right: 0;
+                padding-left: 80px;
+            }
+        }
+
+        .timeline-content {
+            background: var(--glass);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            max-width: 350px;
+            margin: 0 2rem;
+            transition: var(--transition-base);
+        }
+
+        .timeline-content:hover {
+            border-color: var(--color-gold);
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-content {
+                margin: 0;
+                max-width: 100%;
+            }
+        }
+
+        .timeline-number {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: var(--color-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--color-bg);
+            border: 4px solid var(--color-bg);
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-number {
+                left: 30px;
+            }
+        }
+
+        .timeline-content h3 {
+            color: var(--color-gold);
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+        }
+
+        .timeline-content p {
+            font-size: 0.9375rem;
+        }
+
+        /* Testimonials */
+        .testimonials-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonials-track {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding: 1rem 0;
+        }
+
+        .testimonials-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .testimonial-card {
+            min-width: 100%;
+            scroll-snap-align: center;
+            background: var(--glass);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: 3rem;
+            text-align: center;
+            transition: var(--transition-base);
+        }
+
+        @media (min-width: 768px) {
+            .testimonial-card {
+                min-width: calc(50% - 1rem);
+            }
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--color-gold);
+        }
+
+        .testimonial-stars {
+            color: var(--color-gold);
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+        }
+
+        .testimonial-text {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: var(--color-text);
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--color-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-bg);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .author-info h4 {
+            font-size: 1.125rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+        }
+
+        .testimonials-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--color-border);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-base);
+        }
+
+        .testimonial-dot.active {
+            background: var(--color-gold);
+            transform: scale(1.2);
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--glass);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: var(--transition-base);
+        }
+
+        .faq-item:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        .faq-item.active {
+            border-color: var(--color-gold);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: none;
+            border: none;
+            color: var(--color-text);
+            font-size: 1.125rem;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            transition: var(--transition-base);
+        }
+
+        .faq-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-gold);
+            transition: transform 0.3s;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+
+        .faq-answer-content {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Contact Section */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 968px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-card {
+            background: var(--glass);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: var(--transition-base);
+        }
+
+        .contact-card:hover {
+            transform: translateX(10px);
+            border-color: var(--color-gold);
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-gold);
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .contact-card h3 {
+            font-size: 1.125rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-card p {
+            color: var(--color-text-secondary);
+            font-size: 0.9375rem;
+        }
+
+        .contact-form-wrapper {
+            background: var(--glass);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group.full {
+            grid-column: span 2;
+        }
+
+        @media (max-width: 600px) {
+            .form-group.full {
+                grid-column: span 1;
+            }
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--color-gold);
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            color: var(--color-text);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition-base);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--color-gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-group input.error,
+        .form-group textarea.error,
+        .form-group select.error {
+            border-color: var(--color-error);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .error-message {
+            color: var(--color-error);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .form-group.error .error-message {
+            display: block;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--color-surface);
+            border-top: 1px solid var(--color-border);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 968px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .footer-brand p {
+            margin: 1.5rem 0;
+            max-width: 300px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-md);
+            background: var(--color-surface-elevated);
+            border: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-secondary);
+            transition: var(--transition-base);
+        }
+
+        .social-link:hover {
+            background: var(--color-gold);
+            border-color: var(--color-gold);
+            color: var(--color-bg);
+            transform: translateY(-3px);
+        }
+
+        .footer-column h4 {
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-text);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-column a {
+            color: var(--color-text-secondary);
+            font-size: 0.9375rem;
+            transition: var(--transition-base);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-column a:hover {
+            color: var(--color-gold);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+            color: var(--color-text-muted);
+            font-size: 0.875rem;
+        }
+
+        /* Toast Notifications */
+        .toast-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .toast {
+            background: var(--color-surface-elevated);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: var(--shadow-lg);
+            animation: slideIn 0.3s ease;
+            min-width: 300px;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .toast.success {
+            border-color: var(--color-success);
+        }
+
+        .toast.error {
+            border-color: var(--color-error);
+        }
+
+        .toast-icon {
+            font-size: 1.25rem;
+        }
+
+        .toast.success .toast-icon {
+            color: var(--color-success);
+        }
+
+        .toast.error .toast-icon {
+            color: var(--color-error);
+        }
+
+        .toast-content {
+            flex: 1;
+        }
+
+        .toast-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .toast-message {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            color: var(--color-text-muted);
+            cursor: pointer;
+            padding: 0.25rem;
+            transition: var(--transition-fast);
+        }
+
+        .toast-close:hover {
+            color: var(--color-text);
+        }
+
+        /* Admin Panel Styles */
+        .admin-login {
+            max-width: 450px;
+            margin: 100px auto;
+            background: var(--glass);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .admin-dashboard {
+            display: none;
+            padding: 2rem 0;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .admin-card {
+            background: var(--glass);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: var(--transition-base);
+        }
+
+        .admin-card:hover {
+            border-color: var(--color-gold);
+        }
+
+        .admin-card-image {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .admin-card-content {
+            padding: 1.25rem;
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+        }
+
+        .btn-danger {
+            background: rgba(231, 76, 60, 0.2);
+            color: #e74c3c;
+            border: 1px solid rgba(231, 76, 60, 0.3);
+        }
+
+        .btn-danger:hover {
+            background: rgba(231, 76, 60, 0.4);
+        }
+
+        .drag-handle {
+            cursor: grab;
+            padding: 0.5rem;
+            color: var(--color-text-muted);
+        }
+
+        .drag-handle:active {
+            cursor: grabbing;
+        }
+
+        .admin-card.dragging {
+            opacity: 0.5;
+            border: 2px dashed var(--color-gold);
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Loading States */
+        .skeleton {
+            background: linear-gradient(90deg, var(--color-surface) 25%, var(--color-surface-elevated) 50%, var(--color-surface) 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--color-surface-elevated);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow: hidden;
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes modalIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-close {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            color: var(--color-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-base);
+        }
+
+        .modal-close:hover {
+            background: var(--color-error);
+            border-color: var(--color-error);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+            overflow-y: auto;
+            max-height: calc(90vh - 80px);
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Analytics Dashboard */
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .analytics-card {
+            background: var(--glass);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+        }
+
+        .analytics-value {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--color-gold);
+            margin: 0.5rem 0;
+        }
+
+        .analytics-label {
+            color: var(--color-text-muted);
+            font-size: 0.875rem;
+        }
+
+        .chart-container {
+            background: var(--glass);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            height: 300px;
+            position: relative;
+        }
+
+        /* Print Styles */
+        @media print {
+            .header, .hero-visual, .toast-container, .modal-overlay {
+                display: none !important;
+            }
+            
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .glass {
+                background: white;
+                border: 1px solid #ccc;
+            }
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .status-badge {
+                padding: 0.25rem 0.75rem;
+                border-radius: 50px;
+                font-size: 0.75rem;
+                font-weight: 600;
+                text-transform: uppercase;
+            }
+
+            .status-pending { background: rgba(255, 214, 0, 0.2); color: #FFD600; }
+            .status-contacted { background: rgba(33, 150, 243, 0.2); color: #2196F3; }
+            .status-in_progress { background: rgba(156, 39, 176, 0.2); color: #9C27B0; }
+            .status-completed { background: rgba(0, 200, 83, 0.2); color: #00C853; }
+            .status-cancelled { background: rgba(255, 23, 68, 0.2); color: #FF1744; }
+            }
+    </style>
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="universe-bg" aria-hidden="true">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer" role="region" aria-live="polite" aria-label="Notifications"></div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modalTitle">Project Details</h3>
+                <button class="modal-close" onclick="app.closeModal()" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav" role="navigation" aria-label="Main navigation">
+            <a href="#" class="logo" onclick="app.scrollToSection('home')">
+                <div class="logo-mark">FG</div>
+                <span>FOR GOOD</span>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" onclick="app.scrollToSection('home')">Нүүр</a></li>
+                <li><a href="#services" onclick="app.scrollToSection('services')">Үйлчилгээ</a></li>
+                <li><a href="#portfolio" onclick="app.scrollToSection('portfolio')">Ажлууд</a></li>
+                <li><a href="#pricing" onclick="app.scrollToSection('pricing')">Үнэ</a></li>
+                <li><a href="#process" onclick="app.scrollToSection('process')">Үе шат</a></li>
+                <li><a href="#faq" onclick="app.scrollToSection('faq')">FAQ</a></li>
+                <li><a href="#contact" onclick="app.scrollToSection('contact')">Холбогдох</a></li>
+                <li><a href="#" class="nav-cta" onclick="app.showAdmin(); return false;">
+                    <i class="fas fa-lock" aria-hidden="true"></i> Админ
+                </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="mainContent">
+        <!-- Hero Section -->
+        <section class="hero" id="home" aria-label="Hero">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <div class="hero-badge">
+                            <i class="fas fa-crown" aria-hidden="true"></i>
+                            Автоматжуулах үйлчилгээ
+                        </div>
+                        <h1>Таны бизнес<br>бидний бахархал</h1>
+                        <p class="hero-subtitle">
+                            <span class="typing-text" id="typingText"></span>
+                        </p>
+                        <p class="hero-desc">
+                            Бид таны бизнесийн цагийг хэвнэх онлайн дэлгүүр хийж өгнө. Хурдан, хямд, чанартай.
+                        </p>
+
+                        <div class="hero-stats" role="list" aria-label="Company statistics">
+                            <div class="stat" role="listitem">
+                                <span class="stat-number" data-target="50" data-suffix="+">0</span>
+                                <span class="stat-label">Хийсэн ажил</span>
+                            </div>
+                            <div class="stat" role="listitem">
+                                <span class="stat-number" data-target="98" data-suffix="%">0</span>
+                                <span class="stat-label">Сэтгэл ханамж</span>
+                            </div>
+                            <div class="stat" role="listitem">
+                                <span class="stat-number" data-target="2" data-suffix="">0</span>
+                                <span class="stat-label">Жилийн туршлага</span>
+                            </div>
+                        </div>
+
+                        <div class="hero-buttons">
+                            <a href="#contact" class="btn btn-primary btn-large" onclick="app.scrollToSection('contact')">
+                                <i class="fas fa-rocket" aria-hidden="true"></i> Эхлүүлэх
+                            </a>
+                            <a href="#portfolio" class="btn btn-secondary btn-large" onclick="app.scrollToSection('portfolio')">
+                                <i class="fas fa-play" aria-hidden="true"></i> Жишээ үзэх
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="hero-visual" aria-hidden="true">
+                        <div class="dashboard-mockup">
+                            <div class="mockup-header">
+                                <div class="mockup-dots">
+                                    <div class="dot dot-red"></div>
+                                    <div class="dot dot-yellow"></div>
+                                    <div class="dot dot-green"></div>
+                                </div>
+                                <i class="fas fa-wifi" style="color: var(--color-gold);"></i>
+                            </div>
+                            <div class="mockup-content">
+                                <div class="mockup-card">
+                                    <h4>Орлого</h4>
+                                    <div class="mockup-value">₮20M+</div>
+                                    <div class="mockup-chart"></div>
+                                </div>
+                                <div class="mockup-card">
+                                    <h4>Хэрэглэгч</h4>
+                                    <div class="mockup-value">12.5K</div>
+                                    <div class="mockup-chart"></div>
+                                </div>
+                                <div class="mockup-card">
+                                    <h4>Хөрвөлт</h4>
+                                    <div class="mockup-value">24.8%</div>
+                                    <div class="mockup-chart"></div>
+                                </div>
+                                <div class="mockup-card">
+                                    <h4>Хурд</h4>
+                                    <div class="mockup-value">3s</div>
+                                    <div class="mockup-chart"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="float-card float-card-1">
+                            <i class="fas fa-check-circle" style="color: var(--color-gold);"></i>
+                            <span>Ухаалаг систем бэлэн</span>
+                        </div>
+                        <div class="float-card float-card-2">
+                            <i class="fas fa-shield-alt" style="color: var(--color-gold);"></i>
+                            <span>Аюулгүй хамгаалалт</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="reveal" aria-labelledby="services-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">
+                        <i class="fas fa-layer-group" aria-hidden="true"></i> Бидний чадвар
+                    </span>
+                    <h2 id="services-title" class="section-title">Бидний үйлчилгээ</h2>
+                    <p class="section-subtitle">Танд тохирсон вэб сайт санал болгоно.</p>
+                </div>
+
+                <div class="services-grid" id="servicesGrid">
+                    <!-- Services populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="portfolio-section reveal" aria-labelledby="portfolio-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">
+                        <i class="fas fa-magic" aria-hidden="true"></i> Жишээ
+                    </span>
+                    <h2 id="portfolio-title" class="section-title">Миний хийсэн ажлууд</h2>
+                    <p class="section-subtitle">Сүүлийн үеийн төслүүдээс</p>
+                </div>
+
+                <div class="portfolio-controls" role="tablist" aria-label="Filter projects">
+                    <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">Бүгд</button>
+                    <button class="filter-btn" data-filter="ecommerce" role="tab" aria-selected="false">Онлайн дэлгүүр</button>
+                    <button class="filter-btn" data-filter="corporate" role="tab" aria-selected="false">Байгууллага</button>
+                </div>
+
+                <div class="portfolio-grid" id="portfolioGrid" role="tabpanel">
+                    <!-- Projects populated by JS -->
+                </div>
+
+                <div class="portfolio-pagination" id="portfolioPagination" aria-label="Pagination">
+                    <!-- Pagination populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="reveal" aria-labelledby="pricing-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">
+                        <i class="fas fa-tags" aria-hidden="true"></i> Үнийн санал
+                    </span>
+                    <h2 id="pricing-title" class="section-title">Үнийн Санал</h2>
+                    <p class="section-subtitle">Таны бюджетэд тохирсон багц</p>
+                </div>
+
+                <div class="pricing-tabs" role="tablist" aria-label="Pricing options">
+                    <button class="pricing-tab active" data-period="monthly" role="tab" aria-selected="true">Вэб хийлгэх</button>
+                    <button class="pricing-tab" data-period="project" role="tab" aria-selected="false">Дэмжлэг</button>
+                </div>
+
+                <div class="pricing-grid" id="pricingGrid">
+                    <!-- Pricing cards populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section id="process" class="reveal" aria-labelledby="process-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">
+                        <i class="fas fa-cogs" aria-hidden="true"></i> Ажлын урсгал
+                    </span>
+                    <h2 id="process-title" class="section-title">Ажлын үе шат</h2>
+                    <p class="section-subtitle">Бид хэрхэн ажилладаг вэ</p>
+                </div>
+
+                <div class="timeline" role="list" aria-label="Process steps">
+                    <div class="timeline-item" role="listitem">
+                        <div class="timeline-number">01</div>
+                        <div class="timeline-content">
+                            <h3> Ярилцлага</h3>
+                            <p>Таны бизнесийг ойлгож, тохирох шийдэл санал болгоно.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" role="listitem">
+                        <div class="timeline-number">02</div>
+                        <div class="timeline-content">
+                            <h3>Загвар гаргах</h3>
+                            <p>Танд тохирох загвар гаргана.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" role="listitem">
+                        <div class="timeline-number">03</div>
+                        <div class="timeline-content">
+                            <h3>Вэб сайт хийх</h3>
+                            <p>Бид өөрсдөө код бичиж, таны вэбийг хөгжүүлнэ.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" role="listitem">
+                        <div class="timeline-number">04</div>
+                        <div class="timeline-content">
+                            <h3>Шалгалт, тест</h3>
+                            <p>Вэб сайтыг бүх төхөөрөмжөөс туршиж, алдааг засна.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" role="listitem">
+                        <div class="timeline-number">05</div>
+                        <div class="timeline-content">
+                            <h3>Ашиглалт, дэмжлэг</h3>
+                            <p>Вэб сайтыг ажиллуулж, дэмжлэг үзүүлнэ.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="reveal" aria-labelledby="testimonials-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">
+                        <i class="fas fa-comments" aria-hidden="true"></i> Сэтгэгдэл
+                    </span>
+                    <h2 id="testimonials-title" class="section-title">Үйлчлүүлэгчдийн сэтгэгдэл</h2>
+                </div>
+
+                <div class="testimonials-container">
+                    <div class="testimonials-track" id="testimonialsTrack" role="region" aria-label="Testimonials carousel">
+                        <div class="testimonial-card">
+                            <div class="testimonial-stars" aria-label="5 out of 5 stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"Захиалгын хэсэг ачааллыг 60% буурууллаа."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">ОД</div>
+                                <div class="author-info">
+                                    <h4>О. Долгор</h4>
+                                    <p>CEO, Beauty Salon</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-stars" aria-label="5 out of 5 stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"Онлайн шоп маань амжилттай борлуулалтай байна."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">ГЭ</div>
+                                <div class="author-info">
+                                    <h4>Г. Эрдэнэ</h4>
+                                    <p>Nomino Home, CEO</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-stars" aria-label="5 out of 5 stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonials-nav" role="tablist" aria-label="Testimonial navigation">
+                        <button class="testimonial-dot active" aria-label="Go to testimonial 1" aria-selected="true"></button>
+                        <button class="testimonial-dot" aria-label="Go to testimonial 2" aria-selected="false"></button>
+                        <button class="testimonial-dot" aria-label="Go to testimonial 3" aria-selected="false"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="reveal" aria-labelledby="faq-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">
+                        <i class="fas fa-question-circle" aria-hidden="true"></i> Түгээмэл асуулт
+                    </span>
+                    <h2 id="faq-title" class="section-title">Түгээмэл асуултууд</h2>
+                </div>
+
+                <div class="faq-container" id="faqContainer">
+                    <!-- FAQ items populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="reveal" aria-labelledby="contact-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">
+                        <i class="fas fa-paper-plane" aria-hidden="true"></i> Холбогдох
+                    </span>
+                    <h2 id="contact-title" class="section-title">Эхлүүлэх</h2>
+                    <p class="section-subtitle">24 цагийн дотор хариу өгнө.</p>
+                </div>
+
+                <div class="contact-wrapper">
+                    <div class="contact-info">
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h3>Шууд залгах</h3>
+                                <p>+976 9624 0624</p>
+                                <p style="font-size: 0.875rem; margin-top: 0.25rem;">24/7 emergency line</p>
+                            </div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h3>И-мэйл</h3>
+                                <p style="font-size: 0.875rem; margin-top: 0.25rem;">nandia9624@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h3>Оффис</h3>
+                                <p>Улаанбаатар, Монгол</p>
+                            </div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h3>Ажлын цаг</h3>
+                                <p>Даваа - Ням</p>
+                                <p style="font-size: 0.875rem; margin-top: 0.25rem;">08:00 - 19:30</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-wrapper">
+                        <form id="contactForm" novalidate>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="name">Таны нэр *</label>
+                                    <input type="text" id="name" name="name" required 
+                                           pattern="[\u0400-\u04FFa-zA-Z\s]{2,50}"
+                                           aria-required="true" aria-describedby="name-error">
+                                    <span class="error-message" id="name-error">Нэр 2-50 тэмдэгт байх ёстой</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Утасны дугаар *</label>
+                                    <input type="tel" id="phone" name="phone" required 
+                                           pattern="[0-9]{8,12}"
+                                           aria-required="true" aria-describedby="phone-error">
+                                    <span class="error-message" id="phone-error">Зөв утасны дугаар оруулна уу</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">И-мэйл</label>
+                                    <input type="email" id="email" name="email"
+                                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                           aria-describedby="email-error">
+                                    <span class="error-message" id="email-error">Зөв и-мэйл хаяг оруулна уу</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="company">Компанийн нэр</label>
+                                    <input type="text" id="company" name="company">
+                                </div>
+                                <div class="form-group full">
+                                    <label for="service">Ямар үйлчилгээ хэрэгтэй вэ?</label>
+                                    <select id="service" name="service">
+                                        <option value="">Сонгох...</option>
+                                        <option value="web">Вэб сайт хийх</option>
+                                        <option value="ai">Ухаалаг систем</option>
+                                        <option value="cloud">Сайт хурдан ажиллуулах</option>
+                                        <option value="custom">Тусгай хийсэн ажил</option>
+                                    </select>
+                                </div>
+                                <div class="form-group full">
+                                    <label for="budget">Төсөв хэдэн төгрөг вэ?</label>
+                                    <select id="budget" name="budget">
+                                        <option value="">Тодорхойгүй</option>
+                                        <option value="50k">50k</option>
+                                        <option value="150k">150k</option>
+                                        <option value="250k">250k</option>
+                                        <option value="1m+">1M+</option>
+                                    </select>
+                                </div>
+                                <div class="form-group full">
+                                    <label for="message">Нэмэлт мэдээлэл</label>
+                                    <textarea id="message" name="message" rows="5" 
+                                              placeholder="Таны бизнес, хүссэн онцлог, хугацаа..."></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-large" style="width: 100%;" id="submitBtn">
+                                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                                <span>Илгээх</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo" onclick="app.scrollToSection('home'); return false;">
+                        <div class="logo-mark">FG</div>
+                        <span>FOR GOOD</span>
+                    </a>
+                    <p>Монголын вэб хөгжүүлэлтийн компани. Жижиг дунд бизнес эрхлэгчдэд чиглэсэн вэб сайт, онлайн дэлгүүр хийж өгнө.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="GitHub">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Үйлчилгээ</h4>
+                    <ul>
+                        <li><a href="#services" onclick="app.scrollToSection('services')">Вэб сайт хийх</a></li>
+                        <li><a href="#services" onclick="app.scrollToSection('services')">Ухаалаг систем</a></li>
+                        <li><a href="#services" onclick="app.scrollToSection('services')">Cloud</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Компани</h4>
+                    <ul>
+                        <li><a href="#portfolio" onclick="app.scrollToSection('portfolio')">Портфолио</a></li>
+                        <li><a href="#process" onclick="app.scrollToSection('process')">Ажлын үе шат</a></li>
+                        <li><a href="#faq" onclick="app.scrollToSection('faq')">Түгээмэл асуулт</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Хууль эрх зүй</h4>
+                    <ul>
+                        <li><a href="#">Үйлчилгээний нөхцөл</a></li>
+                        <li><a href="#">Нууцлалын бодлого</a></li>
+                        <li><a href="#">Төлбөрийн нөхцөл</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 FOR GOOD Digital Solutions. Бүх эрх хуулиар хамгаалагдсан.</p>
+                <p style="margin-top: 0.5rem;">
+                    Designed with <i class="fas fa-heart" style="color: var(--color-gold);" aria-hidden="true"></i> in Ulaanbaatar
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Panel (Hidden by default) -->
+    <div id="adminPanel" style="display: none;">
+        <div class="admin-login" id="adminLogin">
+            <div style="width: 80px; height: 80px; background: var(--color-gold); border-radius: 24px; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; font-size: 2rem; color: var(--color-bg);">
+                <i class="fas fa-lock" aria-hidden="true"></i>
+            </div>
+            <h2>Админ нэвтрэх</h2>
+
+            <div class="form-group" style="text-align: left;">
+                <label for="adminPassword">Нууц үг</label>
+                <input type="password" id="adminPassword" placeholder="Нууц үг оруулна уу...">
+            </div>
+
+            <div id="loginError" class="error-message" style="display: none; text-align: center; margin-top: 1rem;">
+                <i class="fas fa-exclamation-circle" aria-hidden="true"></i> Нууц үг буруу байна!
+            </div>
+
+            <button class="btn btn-primary btn-large" onclick="app.handleAdminLogin()" style="width: 100%; margin-top: 1.5rem;">
+                <i class="fas fa-sign-in-alt" aria-hidden="true"></i> Нэвтрэх
+            </button>
+
+            <p style="margin-top: 2rem;">
+                <a href="#" onclick="app.hideAdmin(); return false;" style="color: var(--color-gold);">
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i> Нүүр хуудас руу буцах
+                </a>
+            </p>
+        </div>
+
+        <div class="admin-dashboard container" id="adminDashboard">
+            <div class="admin-header">
+
+                <div>
+                    <h2><i class="fas fa-cog" aria-hidden="true"></i> Удирдлагын самбар</h2>
+                    <p style="color: var(--color-text-muted);">Ажлуудыг удирдах</p>
+                </div>
+                <div style="display: flex; gap: 1rem;">
+                    <button class="btn btn-secondary" onclick="app.showAnalytics()">
+                        <i class="fas fa-chart-line" aria-hidden="true"></i> Аналитик
+                    </button>
+                    <a href="#" class="btn btn-secondary" onclick="app.hideAdmin(); return false;">
+                        <i class="fas fa-eye" aria-hidden="true"></i> Сайт харах
+                    </a>
+                    <button class="btn btn-danger" onclick="app.handleLogout()">
+                        <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Гарах
+                    </button>
+                </div>
+            </div>
+            <!-- Admin Dashboard-д нэмэх -->
+            <div id="ordersSection" style="margin-top: 3rem;">
+                <h3 style="margin-bottom: 1.5rem;">
+                    <i class="fas fa-shopping-cart" aria-hidden="true"></i> Захиалгууд
+                    <span id="ordersCount" style="font-size: 0.875rem; color: var(--color-gold); margin-left: 0.5rem;">(0)</span>
+                </h3>
+                
+                <!-- Шүүлтүүр -->
+                <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
+                    <button class="btn btn-small active" onclick="app.filterOrders('all')">Бүгд</button>
+                    <button class="btn btn-small" onclick="app.filterOrders('pending')">Хүлээгдэж буй</button>
+                    <button class="btn btn-small" onclick="app.filterOrders('completed')">Дууссан</button>
+                </div>
+
+                <div class="admin-grid" id="ordersGrid">
+                    <!-- Захиалгууд энд харагдана -->
+                </div>
+            </div>
+
+            <!-- Analytics Section -->
+            <div id="analyticsSection" style="display: none; margin-bottom: 3rem;">
+                <h3 style="margin-bottom: 1.5rem;">Статистик</h3>
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <div class="analytics-label">Нийт үзэлт</div>
+                        <div class="analytics-value" id="totalViews">0</div>
+                    </div>
+                    <div class="analytics-card">
+                        <div class="analytics-label">Өнөөдрийн үзэлт</div>
+                        <div class="analytics-value" id="todayViews">0</div>
+                    </div>
+                    <div class="analytics-card">
+                        <div class="analytics-label">Холбогдсон хүмүүс</div>
+                        <div class="analytics-value" id="totalContacts">0</div>
+                    </div>
+                    <div class="analytics-card">
+                        <div class="analytics-label">Нийт төслүүд</div>
+                        <div class="analytics-value" id="totalProjects">0</div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="analyticsChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Project Form -->
+            <div class="contact-form-wrapper" style="margin-bottom: 3rem;">
+                <h3 id="formTitle" style="margin-bottom: 1.5rem;">
+                    <i class="fas fa-plus-circle" aria-hidden="true"></i> Шинэ ажил нэмэх
+                </h3>
+                <form id="projectForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="projectTitle">Гарчиг *</label>
+                            <input type="text" id="projectTitle" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="projectCategory">Төрөл</label>
+                            <select id="projectCategory">
+                                <option value="ecommerce">Онлайн дэлгүүр</option>
+                                <option value="corporate">Байгууллага</option>
+                                <option value="landing">Landing page</option>
+                            </select>
+                        </div>
+                        <div class="form-group full">
+                            <label for="projectDesc">Тайлбар *</label>
+                            <textarea id="projectDesc" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group full">
+                            <label for="projectImage">Зургийн URL</label>
+                            <input type="url" id="projectImage" placeholder="https://example.com/image.jpg">
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                        <button type="submit" class="btn btn-primary" style="flex: 2;">
+                            <i class="fas fa-save" aria-hidden="true"></i> Хадгалах
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="app.cancelEdit()" style="flex: 1;">
+                            <i class="fas fa-times" aria-hidden="true"></i> Цэвэрлэх
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Projects List -->
+            <div>
+                <h3 style="margin-bottom: 1.5rem;">
+                    <i class="fas fa-list" aria-hidden="true"></i> Бүх ажлууд
+                    <span style="font-size: 0.875rem; color: var(--color-text-muted); font-weight: normal; margin-left: 0.5rem;">
+                        (Чирж дарааллыг өөрчлөнө үү)
+                    </span>
+                </h3>
+                <div class="admin-grid" id="adminProjectsGrid">
+                    <!-- Admin projects populated by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+                /**
+         * FOR GOOD - Main Application
+         * Бүрэн шинэчлэгдсэн хувилбар - Захиалга удирдах хэсэгтэй
+         */
+
+        const app = (function() {
+            'use strict';
+
+            // ==========================================
+            // TOХИРГОО (Configuration)
+            // ==========================================
+            const CONFIG = {
+                GOOGLE_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbz1D4TB3iYsJvOszrs5kcCpTJI7ywDJ03xHh4WuGYP6Y8ZIAyZwMRgU4B0wObK2fv_2/exec',
+                STORAGE_KEYS: {
+                    PROJECTS: 'forgood_projects',
+                    ORDERS: 'forgood_orders',
+                    ANALYTICS: 'forgood_analytics',
+                    ADMIN: 'forgood_admin_session'
+                },
+                ADMIN_PASSWORD: '0601',
+                ITEMS_PER_PAGE: 6
+            };
+
+            // ==========================================
+            // ТӨЛӨВ (State)
+            // ==========================================
+            const state = {
+                projects: [],
+                orders: [],
+                ordersFilter: 'all',
+                analytics: { views: 0, todayViews: 0, contacts: 0, events: [] },
+                pricingPeriod: 'monthly',
+                portfolioFilter: 'all',
+                portfolioPage: 1,
+                editingProjectId: null,
+                isOnline: navigator.onLine
+            };
+
+            // ==========================================
+            // ӨГӨГДЛИЙН ҮЙЛЧИЛГЭЭ (Data Service)
+            // ==========================================
+            const dataService = {
+                // ----- Төслүүд -----
+                async fetchProjects() {
+                    try {
+                        if (state.isOnline) {
+                            const response = await fetch(`${CONFIG.GOOGLE_SCRIPT_URL}?action=getProjects`);
+                            const data = await response.json();
+                            state.projects = data;
+                            localStorage.setItem(CONFIG.STORAGE_KEYS.PROJECTS, JSON.stringify(data));
+                            return data;
+                        }
+                    } catch (error) {
+                        console.warn('API fetch failed:', error);
+                    }
+                    
+                    const stored = localStorage.getItem(CONFIG.STORAGE_KEYS.PROJECTS);
+                    if (stored) {
+                        state.projects = JSON.parse(stored);
+                    } else {
+                        state.projects = [
+                            {
+                                id: 1,
+                                title: "Happy Үсчин Салон",
+                                description: "Үсчин салоны онлайн цаг авалтын систем. 5 үсчинтэй, банкны шилжүүлэгтэй.",
+                                image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800",
+                                category: "ecommerce",
+                                order: 1
+                            },
+                            {
+                                id: 2,
+                                title: "VELORAL Luxury Shop",
+                                description: "Лукс барааны хурдан захиалгын систем. Сагс, төлбөр, Google Sheets холболттой.",
+                                image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800",
+                                category: "ecommerce",
+                                order: 2
+                            }
+                        ];
+                        localStorage.setItem(CONFIG.STORAGE_KEYS.PROJECTS, JSON.stringify(state.projects));
+                    }
+                    return state.projects;
+                },
+
+                async saveProject(project) {
+                    try {
+                        if (state.isOnline) {
+                            const response = await fetch(CONFIG.GOOGLE_SCRIPT_URL, {
+                                method: 'POST',
+                                body: JSON.stringify({ action: 'saveProject', data: project })
+                            });
+                            return await response.json();
+                        }
+                    } catch (error) {
+                        console.warn('API save failed:', error);
+                    }
+
+                    if (project.id) {
+                        const index = state.projects.findIndex(p => p.id === project.id);
+                        if (index !== -1) state.projects[index] = { ...state.projects[index], ...project };
+                    } else {
+                        project.id = Date.now();
+                        project.order = state.projects.length + 1;
+                        state.projects.push(project);
+                    }
+                    localStorage.setItem(CONFIG.STORAGE_KEYS.PROJECTS, JSON.stringify(state.projects));
+                    return { success: true, data: project };
+                },
+
+                async deleteProject(id) {
+                    state.projects = state.projects.filter(p => p.id !== id);
+                    state.projects.forEach((p, idx) => p.order = idx + 1);
+                    localStorage.setItem(CONFIG.STORAGE_KEYS.PROJECTS, JSON.stringify(state.projects));
+                    return { success: true };
+                },
+
+                async saveOrder(orders) {
+                    state.projects.forEach((p, idx) => { p.order = orders.indexOf(p.id) + 1; });
+                    localStorage.setItem(CONFIG.STORAGE_KEYS.PROJECTS, JSON.stringify(state.projects));
+                    return { success: true };
+                },
+
+                // ----- Захиалгууд (ШИНЭ) -----
+                async getOrders() {
+                    try {
+                        if (state.isOnline) {
+                            const response = await fetch(`${CONFIG.GOOGLE_SCRIPT_URL}?action=getOrders`);
+                            const data = await response.json();
+                            state.orders = data;
+                            localStorage.setItem(CONFIG.STORAGE_KEYS.ORDERS, JSON.stringify(data));
+                            return data;
+                        }
+                    } catch (error) {
+                        console.warn('API getOrders failed:', error);
+                    }
+                    
+                    const stored = localStorage.getItem(CONFIG.STORAGE_KEYS.ORDERS);
+                    state.orders = stored ? JSON.parse(stored) : [];
+                    return state.orders;
+                },
+
+                async deleteOrder(id) {
+                    try {
+                        if (state.isOnline) {
+                            await fetch(CONFIG.GOOGLE_SCRIPT_URL, {
+                                method: 'POST',
+                                body: JSON.stringify({ action: 'deleteOrder', data: { id } })
+                            });
+                        }
+                    } catch (e) {
+                        console.warn('API deleteOrder failed:', e);
+                    }
+                    
+                    state.orders = state.orders.filter(o => o.id !== id);
+                    localStorage.setItem(CONFIG.STORAGE_KEYS.ORDERS, JSON.stringify(state.orders));
+                    state.analytics.contacts = state.orders.length;
+                    localStorage.setItem(CONFIG.STORAGE_KEYS.ANALYTICS, JSON.stringify(state.analytics));
+                    return { success: true };
+                },
+
+                async updateOrderStatus(id, status, notes = '') {
+                    try {
+                        if (state.isOnline) {
+                            await fetch(CONFIG.GOOGLE_SCRIPT_URL, {
+                                method: 'POST',
+                                body: JSON.stringify({ action: 'updateOrderStatus', data: { id, status, notes } })
+                            });
+                        }
+                    } catch (e) {
+                        console.warn('API updateOrderStatus failed:', e);
+                    }
+                    
+                    const order = state.orders.find(o => o.id === id);
+                    if (order) {
+                        order.status = status;
+                        order.notes = notes;
+                        localStorage.setItem(CONFIG.STORAGE_KEYS.ORDERS, JSON.stringify(state.orders));
+                    }
+                    return { success: true };
+                },
+
+                // ----- Холбоо барих / Analytics -----
+                async submitContact(formData) {
+                    try {
+                        if (state.isOnline) {
+                            const response = await fetch(CONFIG.GOOGLE_SCRIPT_URL, {
+                                method: 'POST',
+                                body: JSON.stringify({ action: 'submitContact', data: formData })
+                            });
+                            return await response.json();
+                        }
+                    } catch (error) {
+                        console.warn('API submit failed:', error);
+                    }
+
+                    const orders = JSON.parse(localStorage.getItem(CONFIG.STORAGE_KEYS.ORDERS) || '[]');
+                    const newOrder = {
+                        ...formData,
+                        id: Date.now(),
+                        status: 'pending',
+                        createdAt: new Date().toISOString()
+                    };
+                    orders.push(newOrder);
+                    localStorage.setItem(CONFIG.STORAGE_KEYS.ORDERS, JSON.stringify(orders));
+                    state.orders = orders;
+                    
+                    state.analytics.contacts++;
+                    localStorage.setItem(CONFIG.STORAGE_KEYS.ANALYTICS, JSON.stringify(state.analytics));
+                    
+                    return { success: true };
+                },
+
+                async trackEvent(eventType, data = {}) {
+                    const event = { type: eventType, timestamp: new Date().toISOString(), data };
+                    state.analytics.events.push(event);
+                    
+                    if (eventType === 'pageview') {
+                        state.analytics.views++;
+                        const today = new Date().toDateString();
+                        const todayKey = `views_${today}`;
+                        localStorage.setItem(todayKey, (parseInt(localStorage.getItem(todayKey) || '0') + 1));
+                    }
+                    localStorage.setItem(CONFIG.STORAGE_KEYS.ANALYTICS, JSON.stringify(state.analytics));
+                }
+            };
+
+            // ==========================================
+            // UI ҮЙЛЧИЛГЭЭ (UI Service)
+            // ==========================================
+            const ui = {
+                // Toast мэдэгдэл
+                toast(message, type = 'success', duration = 5000) {
+                    const container = document.getElementById('toastContainer');
+                    const toast = document.createElement('div');
+                    toast.className = `toast ${type}`;
+                    toast.setAttribute('role', 'alert');
+                    
+                    const icon = type === 'success' ? 'check-circle' : 'exclamation-circle';
+                    toast.innerHTML = `
+                        <i class="fas fa-${icon} toast-icon" aria-hidden="true"></i>
+                        <div class="toast-content">
+                            <div class="toast-title">${type === 'success' ? 'Амжилттай' : 'Алдаа'}</div>
+                            <div class="toast-message">${message}</div>
+                        </div>
+                        <button class="toast-close" aria-label="Close notification">
+                            <i class="fas fa-times" aria-hidden="true"></i>
+                        </button>
+                    `;
+                    
+                    toast.querySelector('.toast-close').addEventListener('click', () => toast.remove());
+                    container.appendChild(toast);
+                    
+                    setTimeout(() => {
+                        toast.style.opacity = '0';
+                        toast.style.transform = 'translateX(100%)';
+                        setTimeout(() => toast.remove(), 300);
+                    }, duration);
+                },
+
+                // ----- Үндсэн хуудас -----
+                renderServices() {
+                    const services = [
+                        { icon: 'fa-cloud', title: 'Сайт хурдан ажиллуулах', desc: 'Таны сайт хурдан нээгдэж, удаан ажиллана.', features: ['Олон хүн зэрэг ороход хурдан', 'Шууд суулгана', 'Өөрөө шинэчлэгдэнэ'] },
+                        { icon: 'fa-shopping-bag', title: 'Бараа онлайн зарах', desc: 'Бараа онлайн зарах хийж өгнө.', features: ['Бараа онлайн зарах', 'Мөнгө хүлээн авах', 'QPay холболт'] },
+                        { icon: 'fa-chart-line', title: 'Борлуулалт харах', desc: 'Хэдэн хүн сайтаар орж, юм авсаныг харах.', features: ['Шууд харах', 'Танд тохирсон', 'Дараа нь таамаглах'] }
+                    ];
+
+                    const grid = document.getElementById('servicesGrid');
+                    grid.innerHTML = services.map(s => `
+                        <div class="service-card">
+                            <div class="service-icon"><i class="fas ${s.icon}" aria-hidden="true"></i></div>
+                            <h3>${s.title}</h3>
+                            <p>${s.desc}</p>
+                            <ul class="service-features">
+                                ${s.features.map(f => `<li><i class="fas fa-check" aria-hidden="true"></i> ${f}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `).join('');
+                },
+
+                renderPortfolio() {
+                    const grid = document.getElementById('portfolioGrid');
+                    const filtered = state.portfolioFilter === 'all' 
+                        ? state.projects 
+                        : state.projects.filter(p => p.category === state.portfolioFilter);
+                    
+                    const sorted = [...filtered].sort((a, b) => a.order - b.order);
+                    const start = (state.portfolioPage - 1) * CONFIG.ITEMS_PER_PAGE;
+                    const paginated = sorted.slice(start, start + CONFIG.ITEMS_PER_PAGE);
+                    
+                    if (paginated.length === 0) {
+                        grid.innerHTML = '<p style="text-align: center; color: var(--color-text-muted); grid-column: 1/-1;">Ажил олдсонгүй</p>';
+                        return;
+                    }
+                    
+                    grid.innerHTML = paginated.map(p => `
+                        <div class="portfolio-card" onclick="app.openProjectModal(${p.id})">
+                            <div class="portfolio-image-wrapper">
+                                <img src="${p.image || 'https://via.placeholder.com/800x400/1a1a1a/D4AF37?text=' + encodeURIComponent(p.title)}" 
+                                     alt="${p.title}" class="portfolio-image" loading="lazy">
+                                <div class="portfolio-overlay">
+                                    <div class="portfolio-view-btn"><i class="fas fa-eye" aria-hidden="true"></i></div>
+                                </div>
+                            </div>
+                            <div class="portfolio-content">
+                                <span class="portfolio-category">${p.category}</span>
+                                <h3 class="portfolio-title">${p.title}</h3>
+                                <p class="portfolio-desc">${p.description}</p>
+                            </div>
+                        </div>
+                    `).join('');
+                    
+                    this.renderPagination(filtered.length);
+                },
+
+                renderPagination(total) {
+                    const pages = Math.ceil(total / CONFIG.ITEMS_PER_PAGE);
+                    const container = document.getElementById('portfolioPagination');
+                    
+                    if (pages <= 1) {
+                        container.innerHTML = '';
+                        return;
+                    }
+                    
+                    container.innerHTML = `
+                        <button class="pagination-btn" onclick="app.changePage(${state.portfolioPage - 1})" 
+                                ${state.portfolioPage === 1 ? 'disabled' : ''} aria-label="Previous page">
+                            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                        </button>
+                        <span class="pagination-info">Хуудас ${state.portfolioPage} / ${pages}</span>
+                        <button class="pagination-btn" onclick="app.changePage(${state.portfolioPage + 1})" 
+                                ${state.portfolioPage === pages ? 'disabled' : ''} aria-label="Next page">
+                            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        </button>
+                    `;
+                },
+
+                renderPricing() {
+                    const prices = {
+                        monthly: [
+                            { name: 'Эхлэл', price: '75,000₮', period: '/сар', desc: 'Жижиг бизнес, хувь хүн', features: ['5 хуудас', 'Бүх утас, компьютерт тохирно', 'Танилцуулга', '20 мэдээлэл оруулах'], notIncluded: ['Admin самбар', 'API холболт'] },
+                            { name: 'Бизнес', price: '250,000₮', period: '/сар', desc: 'Дунд бизнес, ТББ', popular: true, features: ['5-10 хуудас', 'Хүсэлтээр нэмэлт оруулах', 'Analyst хэсэг', 'Барааны сагс, ангилал', 'Хэрэглэгчийн account', 'Захиалга удирдах самбар'] },
+                            { name: 'Дунд дэлгүүр', price: '150,000₮', period: '/сар', desc: 'E-commerce', features: ['5-7 хуудас', 'Үйлчилгээ танилцуулга', 'Гоёмсог дизайн', '30 бараа оруулах', 'Захиалга удирдах самбар'] },
+                            { name: 'Тусгай', price: 'Тохиролцоно', period: '', desc: 'Томоохон платформ', features: ['Full Тусгай хөгжүүлэлт', 'Бүх үйлчилгээтэй', 'Дурын зүйлс нэмүүлж болно', 'Жилийн баталгаа'] }
+                        ],
+                        project: [
+                            { name: 'нэг удаа', price: '50,000', period: '/төсөл', desc: 'Жижиг бизнес, хувь хүн', features: ['5 хуудас', 'Бүх утас, компьютерт тохирохоор', 'Танилцуулга', '20 мэдээлэл оруулах'], notIncluded: ['Admin самбар', 'API холболт'] },
+                            { name: 'Сарын', price: '150,000₮', period: '/төсөл', desc: 'Дунд бизнес, ТББ', popular: true, features: ['5-10 хуудас', 'Хүсэлтээр нэмэлт оруулах', 'Analyst хэсэг', 'Барааны сагс, ангилал', 'Хэрэглэгчийн account', 'Захиалга удирдах самбар'] },
+                            { name: 'Дунд дэлгүүр', price: '1,500,000₮', period: '/төсөл', desc: 'E-commerce', features: ['5-7 хуудас', 'Үйлчилгээ танилцуулга', 'Гоёмсог дизайн', '30 бараа оруулах', 'Захиалга удирдах самбар'] },
+                            { name: 'Тусгай', price: 'Тохиролцоно', period: '', desc: 'Томоохон платформ', features: ['Full Тусгай хөгжүүлэлт', 'Бүх үйлчилгээтэй', 'Дурын зүйлс нэмүүлж болно', 'Жилийн баталгаа'] }
+                        ]
+                    };
+
+                    const grid = document.getElementById('pricingGrid');
+                    const current = prices[state.pricingPeriod];
+                    
+                    grid.innerHTML = current.map(p => `
+                        <div class="pricing-card ${p.popular ? 'popular' : ''}">
+                            ${p.popular ? '<div class="popular-badge">Илүүтэй</div>' : ''}
+                            <div class="pricing-header">
+                                <div class="pricing-tier">Багц</div>
+                                <div class="pricing-name">${p.name}</div>
+                                <div class="pricing-desc">${p.desc}</div>
+                                <div class="pricing-price">${p.price}<span>${p.period}</span></div>
+                            </div>
+                            <ul class="pricing-features">
+                                ${p.features.map(f => `<li><i class="fas fa-check" aria-hidden="true"></i> ${f}</li>`).join('')}
+                                ${(p.notIncluded || []).map(f => `<li class="not-included"><i class="fas fa-times" aria-hidden="true"></i> ${f}</li>`).join('')}
+                            </ul>
+                            <button class="pricing-btn" onclick="app.selectPackage('${p.name}')">
+                                ${p.price === 'Тохиролцоно' ? 'Дэлгэрэнгүй' : 'Сонгох'}
+                            </button>
+                        </div>
+                    `).join('');
+                },
+
+                renderFAQ() {
+                    const faqs = [
+                        { q: 'Вэб хийх хэр удаан хийх?', a: 'Энгийн сайт: 5 хоног, онлайн дэлгүүр: 1-2 хоног, тусгай шийдэл: тохиролцоно.' },
+                        { q: 'Ямар хэл, програмаар хийдэг вэ?', a: 'Сайтын төрөлөөс хамаарна. Энгийн: WordPress. Томоохон: React, Node.js.' },
+                        { q: 'Дараа нь засвар хэрхэн хийлгэх вэ?', a: 'Бүх төсөлд 3-12 сарын баталгаа олгоно. Дараагийн засвар тохиролцоно.' },
+                        { q: 'API холболт хийж өгөх үү?', a: 'Тийм, бүх багцад API холболт багтсан. Нэмэлт маркетинг тусдаа.' },
+                        { q: 'Ажлын явц хэрхэн мэдэх вэ?', a: 'Та хүсэлтээ илгээгээд, дэлгэрэнгүй ярилцана. 50% урьдчилгаа төлснөөр ажил эхэлнэ.' }
+                    ];
+
+                    const container = document.getElementById('faqContainer');
+                    container.innerHTML = faqs.map((f, i) => `
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="app.toggleFaq(this)" aria-expanded="false">
+                                <span>${f.q}</span>
+                                <div class="faq-icon"><i class="fas fa-chevron-down" aria-hidden="true"></i></div>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">${f.a}</div>
+                            </div>
+                        </div>
+                    `).join('');
+                },
+
+                // ----- Админ хэсэг: Төслүүд -----
+                renderAdminProjects() {
+                    const grid = document.getElementById('adminProjectsGrid');
+                    const sorted = [...state.projects].sort((a, b) => a.order - b.order);
+                    
+                    grid.innerHTML = sorted.map(p => `
+                        <div class="admin-card" draggable="true" data-id="${p.id}">
+                            <div style="display: flex; align-items: center; padding: 0.5rem; border-bottom: 1px solid var(--color-border);">
+                                <div class="drag-handle"><i class="fas fa-grip-vertical" aria-hidden="true"></i></div>
+                                <span style="font-size: 0.75rem; color: var(--color-text-muted); margin-left: auto;">#${p.order}</span>
+                            </div>
+                            <img src="${p.image || 'https://via.placeholder.com/800x400/1a1a1a/D4AF37?text=No+Image'}" alt="${p.title}" class="admin-card-image">
+                            <div class="admin-card-content">
+                                <h4>${p.title}</h4>
+                                <p style="font-size: 0.875rem; color: var(--color-text-muted);">${p.description.substring(0, 60)}...</p>
+                                <div class="admin-actions">
+                                    <button class="btn btn-small btn-edit" onclick="app.editProject(${p.id})">
+                                        <i class="fas fa-edit" aria-hidden="true"></i> Засах
+                                    </button>
+                                    <button class="btn btn-small btn-danger" onclick="app.deleteProject(${p.id})">
+                                        <i class="fas fa-trash" aria-hidden="true"></i> Устгах
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                    
+                    this.initDragAndDrop();
+                },
+
+                initDragAndDrop() {
+                    const cards = document.querySelectorAll('.admin-card');
+                    let draggedElement = null;
+
+                    cards.forEach(card => {
+                        card.addEventListener('dragstart', (e) => {
+                            draggedElement = card;
+                            card.classList.add('dragging');
+                            e.dataTransfer.effectAllowed = 'move';
+                        });
+
+                        card.addEventListener('dragend', () => {
+                            card.classList.remove('dragging');
+                            draggedElement = null;
+                            this.saveNewOrder();
+                        });
+
+                        card.addEventListener('dragover', (e) => {
+                            e.preventDefault();
+                            if (card === draggedElement) return;
+                            const rect = card.getBoundingClientRect();
+                            const midY = rect.top + rect.height / 2;
+                            if (e.clientY < midY) {
+                                card.parentNode.insertBefore(draggedElement, card);
+                            } else {
+                                card.parentNode.insertBefore(draggedElement, card.nextSibling);
+                            }
+                        });
+                    });
+                },
+
+                async saveNewOrder() {
+                    const cards = document.querySelectorAll('.admin-card');
+                    const newOrder = Array.from(cards).map(card => parseInt(card.dataset.id));
+                    await dataService.saveOrder(newOrder);
+                    ui.toast('Дараалал шинэчлэгдлээ');
+                },
+
+                // ----- Админ хэсэг: Захиалгууд (ШИНЭ) -----
+                renderOrders() {
+                    const grid = document.getElementById('ordersGrid');
+                    if (!grid) return;
+                    
+                    const filtered = state.ordersFilter === 'all' 
+                        ? state.orders 
+                        : state.orders.filter(o => o.status === state.ordersFilter);
+                    
+                    const countEl = document.getElementById('ordersCount');
+                    if (countEl) countEl.textContent = `(${filtered.length})`;
+                    
+                    if (filtered.length === 0) {
+                        grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--color-text-muted);">Захиалга олдсонгүй</p>';
+                        return;
+                    }
+
+                    grid.innerHTML = filtered.map(o => `
+                        <div class="admin-card" style="position: relative; border-left: 4px solid ${this.getStatusColor(o.status)};">
+                            <div style="padding: 1.25rem;">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+                                    <div>
+                                        <h4 style="margin-bottom: 0.25rem;">${o.name}</h4>
+                                        <p style="font-size: 0.875rem; color: var(--color-text-muted);">
+                                            <i class="fas fa-phone" style="margin-right: 0.5rem;"></i>${o.phone}
+                                        </p>
+                                    </div>
+                                    <span style="padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; background: ${this.getStatusBg(o.status)}; color: ${this.getStatusColor(o.status)};">
+                                        ${this.getStatusText(o.status)}
+                                    </span>
+                                </div>
+                                
+                                <p style="font-size: 0.9375rem; margin-bottom: 0.5rem;">
+                                    <i class="fas fa-briefcase" style="color: var(--color-gold); margin-right: 0.5rem;"></i>
+                                    ${o.service || 'Тодорхойгүй'}
+                                </p>
+                                
+                                <p style="font-size: 0.9375rem; margin-bottom: 0.5rem;">
+                                    <i class="fas fa-money-bill" style="color: var(--color-gold); margin-right: 0.5rem;"></i>
+                                    ${o.budget || 'Тодорхойгүй'}
+                                </p>
+                                
+                                ${o.email ? `<p style="font-size: 0.875rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
+                                    <i class="fas fa-envelope" style="margin-right: 0.5rem;"></i>${o.email}
+                                </p>` : ''}
+                                
+                                <p style="font-size: 0.875rem; color: var(--color-text-muted); margin-bottom: 1rem; line-height: 1.6; background: var(--color-surface); padding: 0.75rem; border-radius: var(--radius-sm);">
+                                    ${o.message ? o.message.substring(0, 120) + (o.message.length > 120 ? '...' : '') : 'Мессеж хоосон'}
+                                </p>
+                                
+                                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                    <select onchange="app.updateOrderStatus(${o.id}, this.value)" 
+                                            style="flex: 1; padding: 0.5rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-sm); color: var(--color-text); font-size: 0.875rem; cursor: pointer;">
+                                        <option value="pending" ${o.status === 'pending' ? 'selected' : ''}>⏳ Хүлээгдэж буй</option>
+                                        <option value="contacted" ${o.status === 'contacted' ? 'selected' : ''}>📞 Холбогдсон</option>
+                                        <option value="in_progress" ${o.status === 'in_progress' ? 'selected' : ''}>🔨 Хийж байна</option>
+                                        <option value="completed" ${o.status === 'completed' ? 'selected' : ''}>✅ Дууссан</option>
+                                        <option value="cancelled" ${o.status === 'cancelled' ? 'selected' : ''}>❌ Цуцлагдсан</option>
+                                    </select>
+                                    <button class="btn btn-small btn-danger" onclick="app.deleteOrder(${o.id})" title="Устгах">
+                                        <i class="fas fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                
+                                <p style="font-size: 0.75rem; color: var(--color-text-muted); margin-top: 0.75rem; text-align: right;">
+                                    <i class="fas fa-clock" style="margin-right: 0.25rem;"></i>
+                                    ${new Date(o.createdAt).toLocaleString('mn-MN')}
+                                </p>
+                            </div>
+                        </div>
+                    `).join('');
+                },
+
+                getStatusText(status) {
+                    const map = {
+                        pending: 'Хүлээгдэж буй',
+                        contacted: 'Холбогдсон',
+                        in_progress: 'Хийж байна',
+                        completed: 'Дууссан',
+                        cancelled: 'Цуцлагдсан'
+                    };
+                    return map[status] || status;
+                },
+
+                getStatusColor(status) {
+                    const map = {
+                        pending: '#FFD600',
+                        contacted: '#2196F3',
+                        in_progress: '#9C27B0',
+                        completed: '#00C853',
+                        cancelled: '#FF1744'
+                    };
+                    return map[status] || '#666';
+                },
+
+                getStatusBg(status) {
+                    const map = {
+                        pending: 'rgba(255, 214, 0, 0.2)',
+                        contacted: 'rgba(33, 150, 243, 0.2)',
+                        in_progress: 'rgba(156, 39, 176, 0.2)',
+                        completed: 'rgba(0, 200, 83, 0.2)',
+                        cancelled: 'rgba(255, 23, 68, 0.2)'
+                    };
+                    return map[status] || 'rgba(102, 102, 102, 0.2)';
+                },
+
+                updateAnalytics() {
+                    const today = new Date().toDateString();
+                    const todayKey = `views_${today}`;
+                    
+                    const totalViews = document.getElementById('totalViews');
+                    const todayViews = document.getElementById('todayViews');
+                    const totalContacts = document.getElementById('totalContacts');
+                    const totalProjects = document.getElementById('totalProjects');
+                    
+                    if (totalViews) totalViews.textContent = state.analytics.views.toLocaleString();
+                    if (todayViews) todayViews.textContent = (parseInt(localStorage.getItem(todayKey) || '0')).toLocaleString();
+                    if (totalContacts) totalContacts.textContent = state.orders.length.toLocaleString();
+                    if (totalProjects) totalProjects.textContent = state.projects.length;
+                }
+            };
+
+            // ==========================================
+            // НИЙТЛЭГ АРГУУД (Public Methods)
+            // ==========================================
+            return {
+                // ----- Эхлүүлэх -----
+                async init() {
+                    await dataService.fetchProjects();
+                    
+                    const stored = localStorage.getItem(CONFIG.STORAGE_KEYS.ANALYTICS);
+                    if (stored) state.analytics = JSON.parse(stored);
+                    
+                    dataService.trackEvent('pageview', { path: window.location.pathname });
+                    
+                    ui.renderServices();
+                    ui.renderPortfolio();
+                    ui.renderPricing();
+                    ui.renderFAQ();
+                    
+                    this.initEventListeners();
+                    this.initScrollEffects();
+                    this.initTypingEffect();
+                    this.initCounters();
+                    
+                    window.addEventListener('online', () => state.isOnline = true);
+                    window.addEventListener('offline', () => state.isOnline = false);
+                },
+
+                initEventListeners() {
+                    // Mobile menu
+                    const menuBtn = document.getElementById('mobileMenuBtn');
+                    const navLinks = document.getElementById('navLinks');
+                    
+                    if (menuBtn && navLinks) {
+                        menuBtn.addEventListener('click', () => {
+                            const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+                            menuBtn.setAttribute('aria-expanded', !expanded);
+                            menuBtn.classList.toggle('active');
+                            navLinks.classList.toggle('active');
+                        });
+
+                        navLinks.querySelectorAll('a').forEach(link => {
+                            link.addEventListener('click', () => {
+                                menuBtn.setAttribute('aria-expanded', 'false');
+                                menuBtn.classList.remove('active');
+                                navLinks.classList.remove('active');
+                            });
+                        });
+                    }
+
+                    // Header scroll
+                    window.addEventListener('scroll', () => {
+                        const header = document.getElementById('header');
+                        if (header) {
+                            header.classList.toggle('scrolled', window.scrollY > 100);
+                        }
+                    });
+
+                    // Portfolio filters
+                    document.querySelectorAll('.filter-btn').forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            document.querySelectorAll('.filter-btn').forEach(b => {
+                                b.classList.remove('active');
+                                b.setAttribute('aria-selected', 'false');
+                            });
+                            e.target.classList.add('active');
+                            e.target.setAttribute('aria-selected', 'true');
+                            state.portfolioFilter = e.target.dataset.filter;
+                            state.portfolioPage = 1;
+                            ui.renderPortfolio();
+                        });
+                    });
+
+                    // Pricing tabs
+                    document.querySelectorAll('.pricing-tab').forEach(tab => {
+                        tab.addEventListener('click', (e) => {
+                            document.querySelectorAll('.pricing-tab').forEach(t => {
+                                t.classList.remove('active');
+                                t.setAttribute('aria-selected', 'false');
+                            });
+                            e.target.classList.add('active');
+                            e.target.setAttribute('aria-selected', 'true');
+                            state.pricingPeriod = e.target.dataset.period;
+                            ui.renderPricing();
+                        });
+                    });
+
+                    // Testimonials carousel
+                    const track = document.getElementById('testimonialsTrack');
+                    const dots = document.querySelectorAll('.testimonial-dot');
+                    
+                    if (track && dots.length) {
+                        track.addEventListener('scroll', () => {
+                            const index = Math.round(track.scrollLeft / track.clientWidth);
+                            dots.forEach((dot, i) => {
+                                dot.classList.toggle('active', i === index);
+                                dot.setAttribute('aria-selected', i === index);
+                            });
+                        });
+
+                        dots.forEach((dot, i) => {
+                            dot.addEventListener('click', () => {
+                                track.scrollTo({ left: i * track.clientWidth, behavior: 'smooth' });
+                            });
+                        });
+                    }
+
+                    // Contact form
+                    const contactForm = document.getElementById('contactForm');
+                    if (contactForm) {
+                        contactForm.addEventListener('submit', async (e) => {
+                            e.preventDefault();
+                            if (!this.validateForm(e.target)) return;
+                            
+                            const formData = {
+                                name: document.getElementById('name').value,
+                                phone: document.getElementById('phone').value,
+                                email: document.getElementById('email').value,
+                                company: document.getElementById('company').value,
+                                service: document.getElementById('service').value,
+                                budget: document.getElementById('budget').value,
+                                message: document.getElementById('message').value
+                            };
+                            
+                            const submitBtn = document.getElementById('submitBtn');
+                            const originalText = submitBtn.innerHTML;
+                            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Илгээж байна...';
+                            submitBtn.disabled = true;
+                            
+                            try {
+                                await dataService.submitContact(formData);
+                                ui.toast('Баярлалаа! Бид удахгүй холбогдох болно.');
+                                e.target.reset();
+                                dataService.trackEvent('contact_submit', formData);
+                            } catch (error) {
+                                ui.toast('Алдаа гарлаа. Дахин оролдоно уу.', 'error');
+                            } finally {
+                                submitBtn.innerHTML = originalText;
+                                submitBtn.disabled = false;
+                            }
+                        });
+                    }
+
+                    // Project form (admin)
+                    const projectForm = document.getElementById('projectForm');
+                    if (projectForm) {
+                        projectForm.addEventListener('submit', async (e) => {
+                            e.preventDefault();
+                            
+                            const project = {
+                                title: document.getElementById('projectTitle').value,
+                                description: document.getElementById('projectDesc').value,
+                                category: document.getElementById('projectCategory').value,
+                                image: document.getElementById('projectImage').value
+                            };
+                            
+                            if (state.editingProjectId) project.id = state.editingProjectId;
+                            
+                            await dataService.saveProject(project);
+                            ui.toast(state.editingProjectId ? 'Ажил шинэчлэгдлээ' : 'Шинэ ажил нэмэгдлээ');
+                            
+                            this.cancelEdit();
+                            ui.renderAdminProjects();
+                            ui.renderPortfolio();
+                        });
+                    }
+
+                    // Form validation
+                    document.querySelectorAll('#contactForm input, #contactForm textarea').forEach(field => {
+                        field.addEventListener('blur', () => this.validateField(field));
+                        field.addEventListener('input', () => {
+                            if (field.classList.contains('error')) this.validateField(field);
+                        });
+                    });
+                },
+
+                initScrollEffects() {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) entry.target.classList.add('active');
+                        });
+                    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+                    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+                },
+
+                initTypingEffect() {
+                    const element = document.getElementById('typingText');
+                    if (!element) return;
+                    
+                    const text = "AI • Cloud • Mobile • Web";
+                    let i = 0;
+                    
+                    const type = () => {
+                        if (i < text.length) {
+                            element.textContent += text.charAt(i);
+                            i++;
+                            setTimeout(type, 100);
+                        } else {
+                            setTimeout(() => {
+                                element.textContent = '';
+                                i = 0;
+                                type();
+                            }, 3000);
+                        }
+                    };
+                    type();
+                },
+
+                initCounters() {
+                    const counters = document.querySelectorAll('.stat-number[data-target]');
+                    
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                const target = parseInt(entry.target.dataset.target);
+                                const suffix = entry.target.dataset.suffix || '';
+                                this.animateValue(entry.target, 0, target, 2000, suffix);
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, { threshold: 0.5 });
+
+                    counters.forEach(counter => observer.observe(counter));
+                },
+
+                animateValue(obj, start, end, duration, suffix = '') {
+                    let startTimestamp = null;
+                    const step = (timestamp) => {
+                        if (!startTimestamp) startTimestamp = timestamp;
+                        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                        obj.innerHTML = Math.floor(progress * (end - start) + start) + suffix;
+                        if (progress < 1) window.requestAnimationFrame(step);
+                    };
+                    window.requestAnimationFrame(step);
+                },
+
+                validateField(field) {
+                    const pattern = field.pattern;
+                    const value = field.value;
+                    const formGroup = field.closest('.form-group');
+                    
+                    if (field.required && !value) {
+                        formGroup.classList.add('error');
+                        return false;
+                    }
+                    
+                    if (pattern && value && !new RegExp(pattern).test(value)) {
+                        formGroup.classList.add('error');
+                        return false;
+                    }
+                    
+                    formGroup.classList.remove('error');
+                    return true;
+                },
+
+                validateForm(form) {
+                    const fields = form.querySelectorAll('input[required], textarea[required]');
+                    let isValid = true;
+                    fields.forEach(field => { if (!this.validateField(field)) isValid = false; });
+                    return isValid;
+                },
+
+                // ----- Навигац -----
+                scrollToSection(id) {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                        history.pushState(null, null, `#${id}`);
+                    }
+                },
+
+                toggleFaq(button) {
+                    const item = button.parentElement;
+                    const isActive = item.classList.contains('active');
+                    
+                    document.querySelectorAll('.faq-item').forEach(faq => {
+                        faq.classList.remove('active');
+                        faq.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                    });
+                    
+                    if (!isActive) {
+                        item.classList.add('active');
+                        button.setAttribute('aria-expanded', 'true');
+                    }
+                },
+
+                changePage(page) {
+                    state.portfolioPage = page;
+                    ui.renderPortfolio();
+                    document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' });
+                },
+
+                selectPackage(name) {
+                    this.scrollToSection('contact');
+                    const serviceSelect = document.getElementById('service');
+                    const messageArea = document.getElementById('message');
+                    if (serviceSelect) serviceSelect.value = 'web';
+                    if (messageArea) messageArea.value = `Сайн байна уу! "${name}" багц сонирхож байна. Дэлгэрэнгүй мэдээлэл авмаар байна.`;
+                },
+
+                openProjectModal(id) {
+                    const project = state.projects.find(p => p.id === id);
+                    if (!project) return;
+                    
+                    document.getElementById('modalTitle').textContent = project.title;
+                    document.getElementById('modalBody').innerHTML = `
+                        <img src="${project.image || 'https://via.placeholder.com/800x400/1a1a1a/D4AF37?text=' + encodeURIComponent(project.title)}" 
+                             alt="${project.title}" class="modal-image">
+                        <span class="portfolio-category">${project.category}</span>
+                        <p style="margin-top: 1rem; line-height: 1.8;">${project.description}</p>
+                        <button class="btn btn-primary" onclick="app.closeModal(); app.selectPackage('Custom')" style="margin-top: 1.5rem;">
+                            Ижил төсөл хийлгэх
+                        </button>
+                    `;
+                    
+                    document.getElementById('projectModal').classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                },
+
+                closeModal() {
+                    document.getElementById('projectModal').classList.remove('active');
+                    document.body.style.overflow = '';
+                },
+
+                // ----- Админ хэсэг -----
+                showAdmin() {
+                    document.getElementById('mainContent').style.display = 'none';
+                    document.querySelector('.footer').style.display = 'none';
+                    document.getElementById('adminPanel').style.display = 'block';
+                    document.getElementById('header').style.display = 'none';
+                    
+                    const session = sessionStorage.getItem(CONFIG.STORAGE_KEYS.ADMIN);
+                    if (session === 'true') {
+                        this.showAdminDashboard();
+                    } else {
+                        document.getElementById('adminLogin').style.display = 'block';
+                        document.getElementById('adminDashboard').style.display = 'none';
+                    }
+                },
+
+                hideAdmin() {
+                    document.getElementById('mainContent').style.display = 'block';
+                    document.querySelector('.footer').style.display = 'block';
+                    document.getElementById('adminPanel').style.display = 'none';
+                    document.getElementById('header').style.display = 'block';
+                    window.scrollTo(0, 0);
+                },
+
+                handleAdminLogin() {
+                    const password = document.getElementById('adminPassword').value;
+                    const errorMsg = document.getElementById('loginError');
+                    
+                    if (password === CONFIG.ADMIN_PASSWORD) {
+                        sessionStorage.setItem(CONFIG.STORAGE_KEYS.ADMIN, 'true');
+                        errorMsg.style.display = 'none';
+                        this.showAdminDashboard();
+                    } else {
+                        errorMsg.style.display = 'block';
+                        setTimeout(() => errorMsg.style.display = 'none', 3000);
+                    }
+                },
+
+                handleLogout() {
+                    sessionStorage.removeItem(CONFIG.STORAGE_KEYS.ADMIN);
+                    document.getElementById('adminPassword').value = '';
+                    document.getElementById('adminLogin').style.display = 'block';
+                    document.getElementById('adminDashboard').style.display = 'none';
+                },
+
+                async showAdminDashboard() {
+                    document.getElementById('adminLogin').style.display = 'none';
+                    document.getElementById('adminDashboard').style.display = 'block';
+                    
+                    ui.renderAdminProjects();
+                    await this.loadOrders(); // Захиалгуудыг ачаална
+                    ui.updateAnalytics();
+                },
+
+                showAnalytics() {
+                    const section = document.getElementById('analyticsSection');
+                    if (!section) return;
+                    section.style.display = section.style.display === 'none' ? 'block' : 'none';
+                    if (section.style.display === 'block') ui.updateAnalytics();
+                },
+
+                // ----- Захиалга удирдах (ШИНЭ) -----
+                async loadOrders() {
+                    await dataService.getOrders();
+                    ui.renderOrders();
+                },
+
+                filterOrders(status) {
+                    state.ordersFilter = status;
+                    
+                    // Button active state update
+                    const buttons = document.querySelectorAll('#ordersSection .btn-small');
+                    buttons.forEach(btn => {
+                        const btnText = btn.textContent.trim();
+                        const shouldBeActive = 
+                            (status === 'all' && btnText === 'Бүгд') ||
+                            (status === 'pending' && btnText.includes('Хүлээгдэж')) ||
+                            (status === 'completed' && btnText === 'Дууссан');
+                        btn.classList.toggle('active', shouldBeActive);
+                    });
+                    
+                    ui.renderOrders();
+                },
+
+                async updateOrderStatus(id, status) {
+                    await dataService.updateOrderStatus(id, status);
+                    ui.toast('Төлөв шинэчлэгдлээ: ' + ui.getStatusText(status));
+                    ui.renderOrders();
+                },
+
+                async deleteOrder(id) {
+                    if (!confirm('Энэ захиалгыг устгах уу?')) return;
+                    
+                    await dataService.deleteOrder(id);
+                    ui.toast('Захиалга устгагдлаа');
+                    ui.renderOrders();
+                    ui.updateAnalytics();
+                },
+
+                // ----- Төсөл удирдах -----
+                editProject(id) {
+                    const project = state.projects.find(p => p.id === id);
+                    if (!project) return;
+                    
+                    state.editingProjectId = id;
+                    document.getElementById('projectTitle').value = project.title;
+                    document.getElementById('projectDesc').value = project.description;
+                    document.getElementById('projectCategory').value = project.category;
+                    document.getElementById('projectImage').value = project.image || '';
+                    document.getElementById('formTitle').innerHTML = '<i class="fas fa-edit"></i> Ажил засах';
+                    
+                    document.getElementById('projectForm').scrollIntoView({ behavior: 'smooth' });
+                },
+
+                cancelEdit() {
+                    state.editingProjectId = null;
+                    document.getElementById('projectForm').reset();
+                    document.getElementById('formTitle').innerHTML = '<i class="fas fa-plus-circle"></i> Шинэ ажил нэмэх';
+                },
+
+                async deleteProject(id) {
+                    if (!confirm('Энэ ажлыг устгах уу?')) return;
+                    
+                    await dataService.deleteProject(id);
+                    ui.toast('Ажил устгагдлаа');
+                    ui.renderAdminProjects();
+                    ui.renderPortfolio();
+                }
+            };
+        })();
+
+        // ==========================================
+        // ЭХЛҮҮЛЭХ
+        // ==========================================
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => app.init());
+        } else {
+            app.init();
+        }
+
+        // Escape to close modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') app.closeModal();
+        });
+
+        // Click outside to close modal
+        document.getElementById('projectModal')?.addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) app.closeModal();
+        });
+    </script>
+</body>
+</html>
